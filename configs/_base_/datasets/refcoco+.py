@@ -10,8 +10,8 @@ train_pipeline = [
     dict(type='RandomFlip', prob=0.5),
     dict(
         type='PackDetInputs',
-        meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
-                   'scale_factor', 'text', 'image_id'))
+        meta_keys=('image_id', 'img_path', 'ori_shape', 'img_shape',
+                   'scale_factor', 'text'))
 ]
 
 test_pipeline = [
@@ -19,8 +19,8 @@ test_pipeline = [
     dict(type='Resize', scale=(1333, 800), keep_ratio=True),
     dict(
         type='PackDetInputs',
-        meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
-                   'scale_factor', 'text', 'image_id'))
+        meta_keys=('image_id', 'img_path', 'ori_shape', 'img_shape',
+                   'scale_factor', 'text'))
 ]
 
 train_dataloader = dict(
@@ -71,4 +71,5 @@ test_dataloader = dict(
         pipeline=test_pipeline,
         backend_args=backend_args))
 
-# TODO: set the metrics
+val_evaluator = dict(type='VisualGroundingMetric')
+test_evaluator = val_evaluator
