@@ -62,7 +62,7 @@ val_dataloader = dict(
         data_prefix=dict(
             img_path='images/validation',
             seg_map_path='annotations/validation'),
-        return_classess=True,
+        return_classes=True,
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
