@@ -219,13 +219,12 @@ class ADE20KDataset(BaseSegDataset):
                  reduce_zero_label=True,
                  return_classes=False,
                  **kwargs) -> None:
+        self.return_classes = return_classes
         super().__init__(
             img_suffix=img_suffix,
             seg_map_suffix=seg_map_suffix,
             reduce_zero_label=reduce_zero_label,
             **kwargs)
-
-        self.return_classes = return_classes
 
     def load_data_list(self) -> List[dict]:
         """Load annotation from directory or annotation file.
@@ -249,7 +248,6 @@ class ADE20KDataset(BaseSegDataset):
             data_info['label_map'] = self.label_map
             data_info['reduce_zero_label'] = self.reduce_zero_label
             data_info['seg_fields'] = []
-            data_list.append(data_info)
             if self.return_classes:
                 data_info['text'] = list(self.METAINFO.classes)
             data_list.append(data_info)
