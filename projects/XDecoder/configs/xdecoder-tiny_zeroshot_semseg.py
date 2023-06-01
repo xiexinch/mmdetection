@@ -40,7 +40,7 @@ backend_args = None
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='Resize', scale=(2048, 512), keep_ratio=True),
-    dict(type='LoadAnnotations', reduce_zero_label=True),
+    dict(type='LoadSemSegAnnotations', reduce_zero_label=True),
     dict(
         type='PackDetInputs',
         meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
