@@ -43,8 +43,9 @@ test_pipeline = [
     dict(type='LoadSemSegAnnotations', reduce_zero_label=True),
     dict(
         type='PackDetInputs',
-        meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
-                   'scale_factor', 'text'))
+        meta_keys=('img_path', 'ori_shape', 'img_shape', 'scale_factor',
+                   'seg_map_path', 'reduce_zero_label', 'seg_fields', 'img',
+                   'gt_seg_map', 'keep_ratio', 'text'))
 ]
 
 dataset_type = 'ADE20KDataset'
@@ -61,6 +62,7 @@ val_dataloader = dict(
         data_prefix=dict(
             img_path='images/validation',
             seg_map_path='annotations/validation'),
+        return_classess=True,
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
