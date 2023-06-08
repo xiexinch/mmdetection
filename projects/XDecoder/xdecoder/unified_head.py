@@ -346,7 +346,7 @@ class XDecoderUnifiedhead(nn.Module):
                         instance_id += 1
 
         panoptic_seg = PixelData(
-            sem_seg=panoptic_seg.int(),
+            sem_seg=panoptic_seg.int().unsqueeze(0),
             metainfo={
                 'label_names': all_text_prompts,
                 'bg_index': self.test_cfg.get('bg_index', 255)
